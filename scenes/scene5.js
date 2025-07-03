@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/controls/OrbitControls.js';
-import { createArcAroundAxis, drawVector2D } from './helperFunctions.js';
+import { createArcAroundAxis, drawVector2D, drawLine2D } from './helperFunctions.js';
 
 
 let canvas, ctx, earthImg, canvas2, ctx2;
@@ -194,16 +194,15 @@ function drawShadedMap() {
   const data = imgData.data;
 
   for (let j = 0; j < mapHeight; j++) {
-    const lat = (90 - (j / mapHeight) * 180) * (Math.PI / 180);
+    const lat = (90 - (j / (mapHeight-1)) * 180) * (Math.PI / 180);
     for (let i = 0; i < mapWidth; i++) {
-      const lon = ((i / mapWidth) * 360 - 180) * (Math.PI / 180);
+      const lon = ((i / (mapWidth-1)) * 360 - 180) * (Math.PI / 180);
       const x = Math.cos(lat) * Math.cos(lon);
       const y = Math.sin(lat);
       const z = Math.cos(lat) * Math.sin(lon);
 
       const dot = x * sunDir[0] + y * sunDir[1] + z * sunDir[2];
-      const shade = Math.min(0.5,Math.max(dot, 0.0));
-
+      let shade = Math.min(0.5,Math.max(dot, 0.0));
       const index = (j * mapWidth + i) * 4;
       data[index] *= shade;
       data[index + 1] *= shade;
@@ -212,6 +211,10 @@ function drawShadedMap() {
   }
 
   ctx.putImageData(imgData, offsetX, offsetY);
+  drawLine2D(ctx,offsetX,offsetY + mapHeight,offsetX+mapWidth,offsetY+mapHeight,{color:"black",lineWidth:2});
+  drawLine2D(ctx,canvas.width,0,canvas.width,canvas.height,{color:"black",lineWidth:1});
+
+
 
   //draw coordinate axes
   drawVector2D(ctx,0, h/2,w,h/2);

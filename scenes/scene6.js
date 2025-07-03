@@ -231,6 +231,9 @@ function drawShadedMap() {
   }
 
   ctx.putImageData(imgData, offsetX, offsetY);
+  drawLine2D(ctx,offsetX,offsetY + mapHeight,offsetX+mapWidth,offsetY+mapHeight,{color:"black",lineWidth:2});
+  drawLine2D(ctx,canvas.width,0,canvas.width,canvas.height,{color:"black",lineWidth:1});
+
 
   //draw coordinate axes
   drawVector2D(ctx,0, h/2,w,h/2);

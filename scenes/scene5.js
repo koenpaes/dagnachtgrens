@@ -211,7 +211,7 @@ function drawShadedMap() {
   }
 
   ctx.putImageData(imgData, offsetX, offsetY);
-  drawLine2D(ctx,offsetX,offsetY + mapHeight/2,offsetX+mapWidth,offsetY+mapHeight/2,{color:"black",lineWidth:10});
+  drawLine2D(ctx,offsetX,offsetY + mapHeight - 2,offsetX+mapWidth,offsetY+mapHeight-2,{color:"black",lineWidth:10});
   drawLine2D(ctx,canvas.width,0,canvas.width,canvas.height,{color:"black",lineWidth:1});
 
 

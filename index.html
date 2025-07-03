@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Earth Globe</title>
+
+  <!-- Add import map for proper module resolution -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js"
+      }
+    }
+  </script>
+
+  <style>
+    html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background: black;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#controlPanel {
+  height: 25%;
+  width: 100%;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative
+}
+
+#controlCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-color: #222;
+}
+
+#wrapper {
+  height: 75%;
+  width: 100%;
+  display: flex;
+  background: black;
+}
+
+#mapContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  overflow: hidden;
+  position: relative;
+}
+
+#mapCanvas {
+  display: block;
+  background: black;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+
+
+#globeContainer {
+  flex: 1;
+  min-width: 0;
+  background: black;
+  position: relative;
+}
+
+#globeContainer canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+  </style>
+</head>
+<body>
+  <div id="controlPanel">
+    <canvas id="controlCanvas"></canvas>
+    <div id="sceneText" style="
+      position: absolute;
+      top: 10px;
+      left: 200px;
+      color: white;
+      font-size: 22px;
+      pointer-events: none;
+      user-select: none;
+      z-index: 10;
+      ">
+     <!-- Dynamic text here -->
+    </div>
+
+   
+   
+
+  </div>
+
+  <div id="wrapper">
+    <div id="mapContainer">
+      <canvas id="mapCanvas"></canvas>
+    </div>
+    <div id="globeContainer"></div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+  <script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    },
+    startup: {
+      typeset: false  // important! you will typeset manually later
+    }
+  };
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+
+</html>
